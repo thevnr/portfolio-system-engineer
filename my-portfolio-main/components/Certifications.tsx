@@ -1,69 +1,18 @@
-import React from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import React from 'react';
+import { CERTIFICATIONS } from '@/lib/constants';
 
-type Cert = {
-  id: string;
-  title: string;
-  issuer: string;
-  issued?: string;
-  skills?: string[];
-};
-
-const sampleCerts: Cert[] = [
-  {
-    id: "c1",
-    title: "GenAI - How LLMs Work",
-    issuer: "Duke University",
-    issued: "Dec 2024",
-    skills: ["Generative AI", "LLMs"],
-  },
-  {
-    id: "c2",
-    title: "Prompt Engineering",
-    issuer: "freeCodeCamp",
-    issued: "Apr 2024",
-    skills: ["Prompt Engineering", "LLMs"],
-  },
-  {
-    id: "c3",
-    title: "Creating Web App with Python and Flask",
-    issuer: "Coursera",
-    issued: "Aug 2023",
-    skills: ["Flask", "REST APIs"],
-  },
-];
-
-export function Certifications({ items = sampleCerts }: { items?: Cert[] }) {
+export default function Certifications() {
   return (
-    <div>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Certifications</CardTitle>
-          <CardDescription className="text-sm text-muted-foreground">Verified courses and credentials.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <ul className="space-y-4">
-            {items.map((c) => (
-              <li key={c.id} className="flex items-start gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="font-semibold text-foreground">{c.title}</div>
-                      <div className="text-sm text-muted-foreground">{c.issuer} • {c.issued}</div>
-                    </div>
-                  </div>
-
-                  {c.skills && (
-                    <div className="text-sm text-muted-foreground mt-2">Skills: {c.skills.join(" · ")}</div>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-    </div>
+    <section className="py-12 bg-gray-50 rounded-xl my-8 px-6">
+      <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">Professional Credentials</h3>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {CERTIFICATIONS.map((cert, i) => (
+          <div key={i} className="p-4 bg-white rounded-lg shadow-sm border border-gray-100 flex items-start gap-3">
+            <div className="p-2 bg-blue-50 text-blue-600 rounded">🪪</div>
+            <p className="text-sm font-semibold text-gray-700 mt-1">{cert}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
-
-export default Certifications;
